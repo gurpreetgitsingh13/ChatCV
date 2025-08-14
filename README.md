@@ -1,78 +1,52 @@
-# ChatCV — Enhanced
+ChatCV
 
-A chat-driven resume generator with a modern UI, live A4 preview, one‑click DOCX export, and printable PDF.
+ChatCV is a web application that lets you create a complete, well-formatted CV through a simple chat interface. As you answer questions, the resume preview updates in real time, and you can export it as a PDF or DOCX. The project combines a clean frontend with a functional backend so it can be used locally or deployed online.
 
-## Features
-- ✨ Chat UX that gathers your info with smart branching
-- 🖼️ Live resume preview (A4) that updates as you type
-- 🧠 Inline `edit field = value` commands to tweak anything
-- 🧾 Download JSON of your answers
-- 📄 Generate **.docx** via Flask + python‑docx
-- 🖨️ Print / Save as **PDF** directly from the preview
-- 🚀 Easy deploy: Netlify (frontend), Render (backend)
+Features
 
-## Quickstart (local)
-```bash
-# 1) Backend
-cd backend
-python3 -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
-python server.py   # runs at http://localhost:5050
+Conversational flow for collecting personal, education, work, and project details
+Real-time A4 resume preview that updates as you type
+Edit any section instantly using inline commands
+Export options for DOCX (via python-docx) and PDF (browser print)
+Simple deployment for both frontend and backend
 
-# 2) Frontend
-# Open frontend/index.html in your browser (or serve with any static server)
-```
+Tech Stack
 
-> The frontend calls `/api/generate_docx` on the **same origin**. For local dev, start the backend then from the project root run a simple static server:
-```bash
-# from project root (ChatCV_Enhanced)
-python -m http.server 8080
-# visit http://localhost:8080/frontend/
-```
+Frontend: HTML, CSS, Tailwind CSS, JavaScript
+Backend: Python, Flask, flask-cors
+Other: python-docx for document generation, JSON for data storage
 
-## Deploy
-- **Frontend (Netlify/Vercel/GitHub Pages)**: Deploy the `frontend/` folder as static site.
-- **Backend (Render/Fly/Heroku)**: Deploy `backend/` with Python buildpack. Set the start command to:
-  ```
-  gunicorn server:app -b 0.0.0.0:$PORT
-  ```
+Running Locally
 
-## Data entry format cheatsheet
-- **Work (multi-line)**: `Company | Role | Dates | bullet one; bullet two; bullet three`
-- **Projects (multi-line)**: `Title | Stack | bullet one; bullet two`
-- **Education (multi-line)**: `School | Degree | Dates | Note`
-- **Edit command**: `edit summary = data analyst with fintech focus`
+Step 1) Go to the backend folder in the project and create a virtual environment.
+Step 2) Activate the virtual environment.
+Step 3) Install the required dependencies from the requirements.txt file.
+Step 4) Run the server.py file in the backend folder to start the backend on your local machine.
+Step 5) Open the index.html file inside the frontend folder directly in your browser, or run a simple local server to view it.
+Step 6) The application will be ready to use with the frontend connected to the backend.
 
-## Screenshots to use on LinkedIn
-1. **Hero UI** — the gradient header + chat & preview side by side.
-2. **Chat in action** — bubbles collecting experience.
-3. **Live preview** — crisp A4 resume with sections and chips.
-4. **Export** — show the buttons (Generate .docx / Print PDF).
+Deployment
 
-Tip: On mac, press `Shift+Cmd+4` to capture regions. For the PDF, click **Print**, save as PDF, and attach it to your post.
+Frontend can be hosted on Netlify, Vercel, or GitHub Pages.
+Backend can be deployed to Render, Fly.io, or Heroku using the Python buildpack and pointing the start command to run the Flask application.
 
-## Folder structure
-```
-ChatCV_Enhanced/
-  frontend/
-    index.html
-    script.js
-    style.css
-  backend/
-    server.py
-  data/
-  outputs/
-  README.md
-  requirements.txt
-```
+Data Entry Format
 
-## Requirements
-See `requirements.txt`. Minimal must‑haves:
-- Flask
-- flask-cors
-- python-docx
+Work Experience: Company | Role | Dates | bullet one; bullet two; bullet three
+Projects: Title | Stack | bullet one; bullet two
+Education: School | Degree | Dates | Note
+Edit Command: edit summary = Data analyst with fintech focus
 
-## Notes
-- Client‑side print produces a clean PDF using print styles.
-- The DOCX generator builds sane defaults if a field is empty.
-- You can customize the resume HTML in `buildPreviewHTML()` for different templates.
+Folder Structure
+
+ChatCV/
+frontend/
+index.html
+script.js
+style.css
+backend/
+server.py
+data/
+outputs/
+requirements.txt
+README.md
