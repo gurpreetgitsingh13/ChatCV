@@ -1,0 +1,9 @@
+
+/* Print styles for clean PDF from the preview iframe */
+@media print {
+  body { background: white !important; }
+}
+
+/* Scrollbar tweaks */
+#chat::-webkit-scrollbar { width: 10px; }
+#chat::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 10px; }

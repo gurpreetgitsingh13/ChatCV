@@ -1,16 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume Builder Chatbot</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ChatCV — AI Resume Builder</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css"/>
 </head>
-<body>
-    <div class="chat-container" id="chat-container">
-        <div class="message bot-message" id="welcome-message">Welcome to the Resume Builder Chatbot!</div>
+<body class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-slate-100" style="font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;">
+  <!-- Header -->
+  <header class="max-w-7xl mx-auto px-4 py-6 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="h-10 w-10 rounded-2xl bg-indigo-500/20 grid place-items-center ring-1 ring-indigo-400/30">
+        <span class="text-lg font-bold">CV</span>
+      </div>
+      <div>
+        <h1 class="text-xl font-semibold">ChatCV</h1>
+        <p class="text-slate-400 text-sm -mt-1">Chat your way to a polished resume</p>
+      </div>
     </div>
-    <input type="text" class="chat-input" id="user-input" placeholder="Type your answer here..." onkeyup="handleUserInput(event)" />
-    <script src="script.js"></script>
+    <nav class="flex gap-2">
+      <button id="btnClear" class="px-3 py-2 rounded-xl bg-slate-700 hover:bg-slate-600 text-sm ring-1 ring-white/10">Reset</button>
+      <button id="btnDownloadJSON" class="px-3 py-2 rounded-xl bg-slate-700 hover:bg-slate-600 text-sm ring-1 ring-white/10">Download JSON</button>
+      <button id="btnPrint" class="px-3 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-sm">Print / Save PDF</button>
+      <button id="btnDocx" class="px-3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-sm">Generate .docx</button>
+    </nav>
+  </header>
+
+  <!-- Main -->
+  <main class="max-w-7xl mx-auto px-4 pb-14 grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <!-- Chat Panel -->
+    <section class="rounded-2xl bg-slate-800/60 ring-1 ring-white/10 p-4 flex flex-col h-[70vh]">
+      <div id="chat" class="flex-1 overflow-y-auto pr-1 space-y-3">
+        <!-- Welcome -->
+        <div class="flex items-start gap-3">
+          <div class="shrink-0 h-8 w-8 rounded-xl bg-indigo-500/30 grid place-items-center ring-1 ring-indigo-400/30">🤖</div>
+          <div class="max-w-[80%] bg-slate-700/60 rounded-2xl rounded-tl-none px-4 py-2">
+            <p class="text-sm leading-relaxed">hey! i'm chatcv. i’ll ask a few quick questions and live-build your resume on the right. hit “print” anytime for a clean pdf.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Input -->
+      <div class="mt-3 flex items-center gap-2">
+        <input id="chatInput" type="text" placeholder="type here and press enter..." class="flex-1 bg-slate-900/70 ring-1 ring-white/10 focus:ring-indigo-500/50 outline-none px-4 py-3 rounded-xl placeholder:text-slate-400 text-sm" />
+        <button id="sendBtn" class="px-4 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-sm">Send</button>
+      </div>
+    </section>
+
+    <!-- Preview Panel -->
+    <section class="rounded-2xl bg-white text-slate-900 ring-1 ring-black/5 overflow-hidden">
+      <div class="p-6 border-b">
+        <h2 class="text-lg font-semibold">Live Preview</h2>
+        <p class="text-slate-600 text-sm">What recruiters will see (A4 printable)</p>
+      </div>
+      <div class="p-0">
+        <iframe id="previewFrame" class="w-full" style="height: calc(70vh); border: 0; background: white;"></iframe>
+      </div>
+    </section>
+  </main>
+
+  <footer class="max-w-7xl mx-auto px-4 py-6 text-center text-slate-400 text-xs">
+    built with ❤️ by you. deployable on netlify (frontend) + render (flask).
+  </footer>
+
+  <script src="./script.js"></script>
 </body>
 </html>
